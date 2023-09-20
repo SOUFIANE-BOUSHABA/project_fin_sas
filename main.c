@@ -65,6 +65,40 @@ void ajoutTask() {
 }
 
 
+void afficherTachestries() {
+    int i, j;
+     struct Tasks temp;
+    
+    for (i = 0; i < taskCount - 1; i++) {
+        for (j = 0; j < taskCount - i - 1; j++) {
+            if (strcmp(taskList[j].titre, taskList[j + 1].titre) > 0) {
+               
+                temp = taskList[j];
+                taskList[j] = taskList[j + 1];
+                taskList[j + 1] = temp;
+            }
+        }
+    }
+
+    printf("\nListe de toutes les taches triees par ordre alphabetique :\n");
+    for (i = 0; i < taskCount; i++) {
+        printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
+        printf("Titre :            %s\n", taskList[i].titre);
+        printf("Description :      %s\n", taskList[i].description);
+        printf("Date de creation : %d/%d/%d \n", taskList[i].date.jour, taskList[i].date.mois, taskList[i].date.annee);
+        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+        if(taskList[i].statut==0){
+        printf("statu :   a realiser  \n" );	
+		} if(taskList[i].statut==1){
+        printf("statu :   en cours de réalisation  \n" );	
+		}if(taskList[i].statut==2){
+        printf("statu :   finalisée  \n" );	
+		}
+        printf("\n");
+    }
+}
+
+
 
 int main() {
     int choix, choixMenu1 , choixMenu2 , choixMenu3 ,choixMenu4 , choixMenu5;
@@ -148,7 +182,7 @@ int main() {
            
             switch (choixMenu2) {
                 case 1:
-                   
+                   afficherTachestries();
                    
                     break;
                 case 2:
