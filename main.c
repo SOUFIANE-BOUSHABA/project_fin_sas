@@ -184,6 +184,40 @@ void afficherTachestriesbydali() {
 }
 
 
+void delId(int delet) {
+    int i , j, found=0;
+    
+    for (i = 0; i < taskCount ; i++) {
+            if (taskList[i].IdentifiantUnique==delet) {
+               found = 1;
+               for (j = 0; j < taskCount -1; j++){
+               	taskList[j]=taskList[j+1];
+			   }
+			   taskCount--;
+			   printf("la tache a ete suprimmer \n");
+			   break;
+            } 
+    }
+
+    printf("\nListe de toutes les taches :\n");
+    for (i = 0; i < taskCount; i++) {
+        printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
+        printf("Titre :            %s\n", taskList[i].titre);
+        printf("Description :      %s\n", taskList[i].description);
+        printf("Date de creation : %d/%d/%d \n", taskList[i].date.jour, taskList[i].date.mois, taskList[i].date.annee);
+        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+        if(taskList[i].statut==0){
+        printf("statu :   a realiser  \n" );	
+		} if(taskList[i].statut==1){
+        printf("statu :   en cours de réalisation  \n" );	
+		}if(taskList[i].statut==2){
+        printf("statu :   finalisée  \n" );	
+		}
+        printf("\n");
+    }
+}
+
+
 int main() {
     int choix, choixMenu1 , choixMenu2 , choixMenu3 ,choixMenu4 , choixMenu5;
     int previousMenu = 0; 
@@ -239,9 +273,10 @@ int main() {
                    previousMenu = 2; 
                    break;
                 case 4:
-                   
-                    
-                   
+                    printf("Entrez id de la tache pour supprimer : ");
+				    int supId;
+				    scanf("%d", &supId);
+				    delId(supId);
                     break;
                 case 5:
                   
