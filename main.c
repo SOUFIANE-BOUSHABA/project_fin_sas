@@ -18,6 +18,52 @@ struct Tasks {
 };
 
 
+struct Tasks taskList[100]; 
+int taskCount = 0;
+
+void ajoutTask() {
+   
+    if (taskCount < 100) {
+        struct Tasks newTask;
+        newTask.IdentifiantUnique = taskCount + 1;
+        newTask.statut=0;
+        printf("\nVotre tache id est : %d\n", newTask.IdentifiantUnique);
+        printf("\ndonnez le titre de tache :");
+        scanf(" %29[^\n]", &newTask.titre);
+        printf("\ndonnez le description  de tache :");
+        scanf(" %99[^\n]", &newTask.description);
+         
+        printf("\ncombien des jours : ");
+        scanf("%d", &newTask.jours);
+        printf("\ncombien des heurs : ");
+        scanf("%d", &newTask.heures);
+        printf("\ncombien des minuet : ");
+        scanf("%d", &newTask.minutes);
+        printf("Entre la date de creation de tach ( 20 9 2023 ) : ");
+        scanf("%d %d %d", &newTask.date.jour, &newTask.date.mois, &newTask.date.annee);
+
+        taskList[taskCount] = newTask;
+        taskCount++;
+        printf("\n");
+        printf("Tache ajoutee avec succes.\n");
+        printf("\n");
+	            printf("    *****    \n");
+			    printf("  *       *  \n");
+			    printf(" *  O   O  * \n");
+			    printf(" *   \\_/   *\n");
+			    printf(" *         * \n");
+			    printf("  *       *  \n");
+			    printf("    *****    \n");
+			    printf("\n");
+			    printf("\n");
+
+    } else {
+        printf("La liste de taches est pleine.\n");
+    }
+    
+   
+}
+
 
 
 int main() {
@@ -42,15 +88,31 @@ int main() {
             printf("******************************************************************\n");
             scanf("%d", &choix);
              if (choix == 7) {
-                printf("Au revoir !\n"); break;
+                printf("Au revoir !\n"); 
+				printf("\n");
+                printf("  ****   ****  \n");
+			    printf("******* *******\n");
+			    printf("***************\n");
+			    printf(" ************* \n");
+			    printf("  ***********  \n");
+			    printf("    *******    \n");
+			    printf("      ***      \n");
+			    printf("       *       \n");
+				break;
             }
             switch (choix) {
                 case 1:
-                  
+                   ajoutTask();
                   break;
                 case 11:
+                   printf("donner le nomber de tache que vous vous stock : \n");
+                    scanf("%d", &n);
+                    for(i=0;i<n;i++){
+                    	ajoutTask();
+					}
                   
                   break;
+               
                 case 2:
                    
                     previousMenu = 1; 
