@@ -144,6 +144,45 @@ void afficherTachestriesDelai() {
 }
 
 
+void afficherTachestriesbydali() {
+    int i; 
+
+    printf("\nListe de toutes les taches triees deali :\n");
+     for (i = 0; i < taskCount; i++) {
+    	if (taskList[i].jours < 3  ) {
+        printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
+        printf("Titre :            %s\n", taskList[i].titre);
+        printf("Description :      %s\n", taskList[i].description);
+        printf("Date de creation : %d/%d/%d \n", taskList[i].date.jour, taskList[i].date.mois, taskList[i].date.annee);
+        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+			        if(taskList[i].statut==0){
+			        printf("statu :   a realiser  \n" );	
+					} if(taskList[i].statut==1){
+			        printf("statu :   en cours de réalisation  \n" );	
+					}if(taskList[i].statut==2){
+			        printf("statu :   finalisée  \n" );	
+					}
+					
+	    printf("\n");
+		}
+        else  if (taskList[i].jours == 3 && taskList[i].heures==0 && taskList[i].minutes==0) {
+        printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
+        printf("Titre :            %s\n", taskList[i].titre);
+        printf("Description :      %s\n", taskList[i].description);
+        printf("Date de creation : %d/%d/%d \n", taskList[i].date.jour, taskList[i].date.mois, taskList[i].date.annee);
+        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+			        if(taskList[i].statut==0){
+			        printf("statu :   a realiser  \n" );	
+					} if(taskList[i].statut==1){
+			        printf("statu :   en cours de réalisation  \n" );	
+					}if(taskList[i].statut==2){
+			        printf("statu :   finalisée  \n" );	
+					}
+	    printf("\n");}
+    }
+   
+}
+
 
 int main() {
     int choix, choixMenu1 , choixMenu2 , choixMenu3 ,choixMenu4 , choixMenu5;
@@ -235,7 +274,7 @@ int main() {
                    
                     break;
                 case 3:
-                    
+                    afficherTachestriesbydali();
                    
                     break;
                 case 4:
