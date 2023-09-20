@@ -217,7 +217,51 @@ void delId(int delet) {
     }
 }
 
+void updateDescription(){
+	 printf("Entrez l identifiant de la tache dont vous pouvez modifier la description : ");
+    int id;
+    int i;
+    scanf("%d", &id);
 
+    int found = 0;
+    for ( i = 0; i < taskCount; i++) {
+        if (taskList[i].IdentifiantUnique == id) {
+            found = 1;
+            printf("Nouvelle description pour la tache #%d : ", id);
+            scanf(" %99[^\n]", taskList[i].description); 
+            printf("La description a ete mise a jour.\n" );
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Aucune tache avec l identifiant #%d n a ete trouvee.\n", id);
+    }
+   
+}
+
+void updateStatu(){
+	 printf("Entrez l identifiant de la tache dont vous pouvez modifier la statu : ");
+     int id;
+     int i;
+    scanf("%d", &id);
+
+    int found = 0;
+    for ( i = 0; i < taskCount; i++) {
+        if (taskList[i].IdentifiantUnique == id) {
+            found = 1;
+            printf("Nouvelle statu pour la tache #%d : ", id);
+            scanf(" %d",&taskList[i].statut); 
+            printf("Le statu a ete mise a jour.\n" );
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("Aucune tache avec l identifiant #%d ne pas ete trouvee.\n", id);
+    }
+   
+}
 int main() {
     int choix, choixMenu1 , choixMenu2 , choixMenu3 ,choixMenu4 , choixMenu5;
     int previousMenu = 0; 
@@ -331,11 +375,11 @@ int main() {
 
             switch (choixMenu3) {
                 case 1:
-                    
-                   
+                   updateDescription();
                     break;
                 case 2:
-                  
+                   updateStatu();
+                   
                     break;
                 case 3:
                     
