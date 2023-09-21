@@ -262,6 +262,88 @@ void updateStatu(){
     }
    
 }
+
+
+
+void searchTachebyTitre(char search[30]) {
+    int i, foundd = 0;
+
+    for (i = 0; i < taskCount; i++) {
+        if (strcmp(taskList[i].titre, search) == 0) {
+            foundd = 1;
+            printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
+            printf("Titre :            %s\n", taskList[i].titre);
+            printf("Description :      %s\n", taskList[i].description);
+            printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+            if (taskList[i].statut == 0) {
+                printf("statu :   a realiser  \n");
+            }
+            if (taskList[i].statut == 1) {
+                printf("statu :   en cours de réalisation  \n");
+            }
+            if (taskList[i].statut == 2) {
+                printf("statu :   finalisee  \n");
+            }
+            printf("\n");
+        }
+    }
+
+    if (!foundd) {
+        printf("Aucune tache avec le titre '%s' n'a été trouvée.\n", search);
+    }
+}
+
+
+void searchTache(int search){
+	 int i , j, found=0;
+    
+    for (i = 0; i < taskCount ; i++) {
+            if (taskList[i].IdentifiantUnique==search) {
+               found = 1;
+              
+			    printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
+		        printf("Titre :            %s\n", taskList[i].titre);
+		        printf("Description :      %s\n", taskList[i].description);
+		        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+		        if(taskList[i].statut==0){
+		        printf("statu :   a realiser  \n" );	
+				} if(taskList[i].statut==1){
+		        printf("statu :   en cours de réalisation  \n" );	
+				}if(taskList[i].statut==2){
+		        printf("statu :   finalisée  \n" );	
+				}
+		        printf("\n");
+			  
+			   break;
+            } 
+    }
+}
+
+
+void displayTotalTasks() {
+    printf("Le nombre total de taches est : %d\n", taskCount);
+}
+
+void incompleteComplet() {
+	int i;
+	int completeTaskCount = 0;
+    int incompleteTaskCount = 0;
+    for ( i = 0; i < taskCount; i++) {
+       
+        if(taskList[i].statut==0){
+        	incompleteTaskCount++;	
+		} if(taskList[i].statut==1){
+		incompleteTaskCount++;	
+		}if(taskList[i].statut==2){
+        completeTaskCount++;
+		}
+		 printf("Nombre de taches completes : %d\n", completeTaskCount);
+         printf("Nombre de taches incompletes : %d\n", incompleteTaskCount);
+        printf("\n");
+    }
+}
+
+
 int main() {
     int choix, choixMenu1 , choixMenu2 , choixMenu3 ,choixMenu4 , choixMenu5;
     int previousMenu = 0; 
@@ -309,29 +391,18 @@ int main() {
                   
                   break;
                
-                case 2:
-                   
-                    previousMenu = 1; 
-                    break;
-                case 3:
-                   previousMenu = 2; 
-                   break;
+                case 2:previousMenu = 1; break;
+                case 3:previousMenu = 2; break;
                 case 4:
                     printf("Entrez id de la tache pour supprimer : ");
 				    int supId;
 				    scanf("%d", &supId);
 				    delId(supId);
                     break;
-                case 5:
-                  
-                   
-                    previousMenu = 3; 
-                    break;
-                case 6:
-                   previousMenu = 4; 
-                   break;
+                case 5:previousMenu = 3; break;
+                case 6:previousMenu = 4; break;
                 default:
-                    printf("Invalid choice.\n");
+                    printf("Invalid .\n");
             }
         } else if (previousMenu == 1) {
           	printf("******************************************************************\n");
@@ -344,23 +415,12 @@ int main() {
             scanf("%d", &choixMenu2);
            
             switch (choixMenu2) {
-                case 1:
-                   afficherTachestries();
-                   
-                    break;
-                case 2:
-                    afficherTachestriesDelai();
-                   
-                    break;
-                case 3:
-                    afficherTachestriesbydali();
-                   
-                    break;
-                case 4:
-                    previousMenu = 0; 
-                    break;
+                case 1:afficherTachestries();break;
+                case 2:afficherTachestriesDelai();break;
+                case 3:afficherTachestriesbydali();break;
+                case 4:previousMenu = 0; break;
                 default:
-                    printf("Invalid choice. Please try again.\n");
+                    printf("Invalid .\n");
             }
         } else if (previousMenu == 2) {
           	printf("******************************************************************\n");
@@ -374,47 +434,41 @@ int main() {
             
 
             switch (choixMenu3) {
-                case 1:
-                   updateDescription();
-                    break;
-                case 2:
-                   updateStatu();
-                   
-                    break;
+                case 1:updateDescription();break;
+                case 2:updateStatu();break;
                 case 3:
                     
                    
                     break;
-                case 4:
-                    previousMenu = 0; 
-                    break;
+                case 4:previousMenu = 0; break;
                 default:
-                    printf("Invalid choice. Please try again.\n");
+                    printf("invalid\n");
             }
         }else if (previousMenu == 3) {
           	printf("******************************************************************\n");
-            printf("1 = Rechercher une tâche par son Identifiant.                    *\n");
-	        printf("2 = Rechercher une tâche par son Titre.                          *\n");
+            printf("1 = Rechercher une tache par son Identifiant.                    *\n");
+	        printf("2 = Rechercher une tache par son Titre.                          *\n");
 	        printf("3 = retour                                                       *\n");
 	        printf("Choisissez un nombre 1-3 :                                       *\n");
 	       	printf("******************************************************************\n");
             scanf("%d", &choixMenu4);
 
             switch (choixMenu4) {
-                case 1:
-                  
-                   
+                 case 1:
+                     printf("Entrez id de la tache pour rechercher : ");
+				    int searchId;
+				    scanf("%d", &searchId);
+				    searchTache(searchId);
                     break;
                 case 2:
-                    
-                   
+                	printf("Entrez le titre de la tache pour rechercher : ");
+				    char searchtitre[30];
+				    scanf(" %29[^\n]", searchtitre);
+				    searchTachebyTitre(searchtitre);
                     break;
-               
-                case 3:
-                    previousMenu = 0; 
-                    break;
+                case 3:previousMenu = 0; break;
                 default:
-                    printf("Invalid choice\n");
+                    printf("Invalid \n");
             }
         }else if (previousMenu == 4) {
           	printf("******************************************************************\n");
@@ -427,22 +481,14 @@ int main() {
             scanf("%d", &choixMenu5);
 
             switch (choixMenu5) {
-                case 1:
-                    
-                   
-                    break;
-                case 2:
-                    
-                   
-                    break;
+                case 1: displayTotalTasks(); break;
+                case 2:incompleteComplet(); break;
                 case 3:
                     
                     break;
-                case 4:
-                    previousMenu = 0; 
-                    break;
+                case 4: previousMenu = 0;  break;
                 default:
-                    printf("Invalid choice.\n");
+                    printf("Invalid .\n");
             }
         }
     }
