@@ -17,11 +17,8 @@ struct Tasks {
     int statut; 
 };
 
-
-
 struct Tasks taskList[100]; 
 int taskCount = 0;
-
 void ajoutTask() {
    
     if (taskCount < 100) {
@@ -45,12 +42,9 @@ void ajoutTask() {
         taskCount++;
         printf("\n");
         printf("Tache ajoutee avec succes.\n");
-      
     } else {
         printf("La liste de taches est pleine.\n");
-    }
-    
-   
+    }  
 }
 
 void afficherTaches() {
@@ -390,7 +384,7 @@ int main() {
             printf("Choisissez un nombre 1-7 :                                       *\n");
             printf("******************************************************************\n");
             scanf("%s", &input);
-            choix = strtol(input, NULL, 10);
+            choix = atoi(input);
             system("cls");
              if (choix == 7) {
                exit(0);
