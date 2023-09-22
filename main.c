@@ -2,9 +2,7 @@
 #include<stdlib.h>
 #include<string.h>
 
-typedef struct date {
-    int jour, mois, annee;
-} T_date;
+
 
 struct Tasks {
     int IdentifiantUnique;
@@ -46,16 +44,7 @@ void ajoutTask() {
         taskCount++;
         printf("\n");
         printf("Tache ajoutee avec succes.\n");
-        printf("\n");
-	            printf("    *****    \n");
-			    printf("  *       *  \n");
-			    printf(" *  O   O  * \n");
-			    printf(" *   \\_/   *\n");
-			    printf(" *         * \n");
-			    printf("  *       *  \n");
-			    printf("    *****    \n");
-			    printf("\n");
-			    printf("\n");
+       
 
     } else {
         printf("La liste de taches est pleine.\n");
@@ -197,23 +186,6 @@ void delId(int delet) {
 			   printf("la tache a ete suprimmer \n");
 			   break;
             } 
-    }
-
-    printf("\nListe de toutes les taches :\n");
-    for (i = 0; i < taskCount; i++) {
-        printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
-        printf("Titre :            %s\n", taskList[i].titre);
-        printf("Description :      %s\n", taskList[i].description);
-        printf("Date de creation : %d/%d/%d \n", taskList[i].date.jour, taskList[i].date.mois, taskList[i].date.annee);
-        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
-        if(taskList[i].statut==0){
-        printf("statu :   a realiser  \n" );	
-		} if(taskList[i].statut==1){
-        printf("statu :   en cours de réalisation  \n" );	
-		}if(taskList[i].statut==2){
-        printf("statu :   finalisée  \n" );	
-		}
-        printf("\n");
     }
 }
 
