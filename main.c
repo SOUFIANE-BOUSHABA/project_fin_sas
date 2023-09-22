@@ -2,12 +2,15 @@
 #include<stdlib.h>
 #include<string.h>
 
-
+typedef struct date {
+    int jour, mois, annee;
+} T_date;
 
 struct Tasks {
     int IdentifiantUnique;
     char titre[30];
     char description[100];
+    T_date date; 
     int minutes; 
     int heures;  
     int jours;    
@@ -36,7 +39,8 @@ void ajoutTask() {
         scanf("%d", &newTask.heures);
         printf("\ncombien des minuet : ");
         scanf("%d", &newTask.minutes);
-      
+        printf("Entre la date de creation de tach ( 20 9 2023 ) : ");
+        scanf("%d %d %d", &newTask.date.jour, &newTask.date.mois, &newTask.date.annee);
         taskList[taskCount] = newTask;
         taskCount++;
         printf("\n");
@@ -56,7 +60,8 @@ void afficherTaches() {
         printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
         printf("Titre :            %s\n", taskList[i].titre);
         printf("Description :      %s\n", taskList[i].description);
-        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+        printf("Date de creation : %d/%d/%d \n", taskList[i].date.jour, taskList[i].date.mois, taskList[i].date.annee);
+	    printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
         if(taskList[i].statut==0){
         printf("statu :   a realiser  \n" );	
 		} if(taskList[i].statut==1){
@@ -83,20 +88,7 @@ void afficherTachestries() {
     }
 
     printf("\nListe de toutes les taches triees par ordre alphabetique :\n");
-    for (i = 0; i < taskCount; i++) {
-        printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
-        printf("Titre :            %s\n", taskList[i].titre);
-        printf("Description :      %s\n", taskList[i].description);
-        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
-        if(taskList[i].statut==0){
-        printf("statu :   a realiser  \n" );	
-		} if(taskList[i].statut==1){
-        printf("statu :   en cours de réalisation  \n" );	
-		}if(taskList[i].statut==2){
-        printf("statu :   finalisée  \n" );	
-		}
-        printf("\n");
-    }
+    afficherTaches(); 
 }
 
 void afficherTachestriesDelai() {
@@ -125,21 +117,8 @@ void afficherTachestriesDelai() {
         }
     }
 
-    printf("\nListe de toutes les taches triees par ordre alphabetique :\n");
-    for (i = 0; i < taskCount; i++) {
-        printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
-        printf("Titre :            %s\n", taskList[i].titre);
-        printf("Description :      %s\n", taskList[i].description);
-        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
-        if(taskList[i].statut==0){
-        printf("statu :   a realiser  \n" );	
-		} if(taskList[i].statut==1){
-        printf("statu :   en cours de réalisation  \n" );	
-		}if(taskList[i].statut==2){
-        printf("statu :   finalisée  \n" );	
-		}
-	    printf("\n");
-    }
+    printf("\nListe de toutes les taches triees par deali :\n");
+    afficherTaches();
 }
 
 
@@ -237,18 +216,46 @@ void searchTache(int search){
 			    printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
 		        printf("Titre :            %s\n", taskList[i].titre);
 		        printf("Description :      %s\n", taskList[i].description);
-		        printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+		        printf("Delai :            %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
 		        if(taskList[i].statut==0){
-		        printf("statu :   a realiser  \n" );	
+		        printf("statu :             a realiser  \n" );	
 				} if(taskList[i].statut==1){
-		        printf("statu :   en cours de réalisation  \n" );	
+		        printf("statu :             en cours de réalisation  \n" );	
 				}if(taskList[i].statut==2){
-		        printf("statu :   finalisée  \n" );	
+		        printf("statu :             finalisée  \n" );	
 				}
 		        printf("\n");
 			  
 			   break;
             } 
+    }
+}
+
+
+void searchTacheSpecifique(int search) {
+    int i, found = 0;
+
+    printf("\nListe de toutes les taches avec le statut %d :\n", search);
+    for (i = 0; i < taskCount; i++) {
+        if (taskList[i].statut == search) {
+            found = 1;
+            printf("\nTache #%d :  \n", taskList[i].IdentifiantUnique);
+            printf("Titre :            %s\n", taskList[i].titre);
+            printf("Description :      %s\n", taskList[i].description);
+            printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
+            if (taskList[i].statut == 0) {
+                printf("Statut :   a réaliser\n");
+            } else if (taskList[i].statut == 1) {
+                printf("Statut :   en cours de réalisation\n");
+            } else if (taskList[i].statut == 2) {
+                printf("Statut :   finalisée\n");
+            }
+            printf("\n");
+        }
+    }
+
+    if (!found) {
+        printf("Aucune tache avec le statut %d n'a été trouvée.\n", search);
     }
 }
 
@@ -482,7 +489,8 @@ int main() {
           	printf("******************************************************************\n");
             printf("1 = Rechercher une tache par son Identifiant.                    *\n");
 	        printf("2 = Rechercher une tahe par son Titre.                           *\n");
-	        printf("3 = retour                                                       *\n");
+	        printf("3 = Rechercher specifique par statu de tache                     *\n");
+	        printf("4 = retour                                                       *\n");
 	        printf("Choisissez un nombre 1-3 :                                       *\n");
 	       	printf("******************************************************************\n");
             scanf("%d", &choixMenu4);
@@ -501,12 +509,18 @@ int main() {
 				    scanf(" %29[^\n]", searchtitre);
 				    searchTachebyTitre(searchtitre);
                     break;
-               
                 case 3:
+                	printf("filter les tache par son statu ( a réalise :0  || en cours de réaliser :1 || finalisé : 2) : ");
+				    int searchStatu;
+				    scanf("%d",&searchStatu);
+				    searchTacheSpecifique(searchStatu);
+                    break;
+               
+                case 4:
                     previousMenu = 0; 
                     break;
                 default:
-                    printf("Invalid choice. Please try again.\n");
+                    printf("Invalid\n");
             }
         }else if (previousMenu == 4) {
           	printf("******************************************************************\n");
