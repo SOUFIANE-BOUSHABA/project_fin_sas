@@ -16,9 +16,9 @@ struct Tasks {
     int jours;    
     int statut; 
 };
-
+hhhhh
 struct Tasks taskList[100]; 
-int taskCount = 0;
+int taskCound = 0;
 void ajoutTask() {
    
     if (taskCount < 100) {
@@ -59,9 +59,9 @@ void afficherTaches() {
         if(taskList[i].statut==0){
         printf("statu :   a realiser  \n" );	
 		} if(taskList[i].statut==1){
-        printf("statu :   en cours de réalisation  \n" );	
+        printf("statu :   en cours de rÃ©alisation  \n" );	
 		}if(taskList[i].statut==2){
-        printf("statu :   finalisée  \n" );	
+        printf("statu :   finalisÃ©e  \n" );	
 		}
         printf("\n");
     }
@@ -129,9 +129,9 @@ void afficherTachestriesbydali() {
 			        if(taskList[i].statut==0){
 			        printf("statu :   a realiser  \n" );	
 					} if(taskList[i].statut==1){
-			        printf("statu :   en cours de réalisation  \n" );	
+			        printf("statu :   en cours de rÃ©alisation  \n" );	
 					}if(taskList[i].statut==2){
-			        printf("statu :   finalisée  \n" );	
+			        printf("statu :   finalisÃ©e  \n" );	
 					}
 					
 	    printf("\n");
@@ -144,9 +144,9 @@ void afficherTachestriesbydali() {
 			        if(taskList[i].statut==0){
 			        printf("statu :   a realiser  \n" );	
 					} if(taskList[i].statut==1){
-			        printf("statu :   en cours de réalisation  \n" );	
+			        printf("statu :   en cours de rÃ©alisation  \n" );	
 					}if(taskList[i].statut==2){
-			        printf("statu :   finalisée  \n" );	
+			        printf("statu :   finalisÃ©e  \n" );	
 					}
 	    printf("\n");}
     }
@@ -185,7 +185,7 @@ void searchTachebyTitre(char search[30]) {
                 printf("statu :   a realiser  \n");
             }
             if (taskList[i].statut == 1) {
-                printf("statu :   en cours de réalisation  \n");
+                printf("statu :   en cours de rÃ©alisation  \n");
             }
             if (taskList[i].statut == 2) {
                 printf("statu :   finalisee  \n");
@@ -195,7 +195,7 @@ void searchTachebyTitre(char search[30]) {
     }
 
     if (!foundd) {
-        printf("Aucune tache avec le titre '%s' n'a été trouvée.\n", search);
+        printf("Aucune tache avec le titre '%s' n'a Ã©tÃ© trouvÃ©e.\n", search);
     }
 }
 
@@ -214,9 +214,9 @@ void searchTache(int search){
 		        if(taskList[i].statut==0){
 		        printf("statu :             a realiser  \n" );	
 				} if(taskList[i].statut==1){
-		        printf("statu :             en cours de réalisation  \n" );	
+		        printf("statu :             en cours de rÃ©alisation  \n" );	
 				}if(taskList[i].statut==2){
-		        printf("statu :             finalisée  \n" );	
+		        printf("statu :             finalisÃ©e  \n" );	
 				}
 		        printf("\n");
 			  
@@ -238,18 +238,18 @@ void searchTacheSpecifique(int search) {
             printf("Description :      %s\n", taskList[i].description);
             printf("Delai : %d jours %d heures %d minutes \n", taskList[i].jours, taskList[i].heures, taskList[i].minutes);
             if (taskList[i].statut == 0) {
-                printf("Statut :   a réaliser\n");
+                printf("Statut :   a rÃ©aliser\n");
             } else if (taskList[i].statut == 1) {
-                printf("Statut :   en cours de réalisation\n");
+                printf("Statut :   en cours de rÃ©alisation\n");
             } else if (taskList[i].statut == 2) {
-                printf("Statut :   finalisée\n");
+                printf("Statut :   finalisÃ©e\n");
             }
             printf("\n");
         }
     }
 
     if (!found) {
-        printf("Aucune tache avec le statut %d n'a été trouvée.\n", search);
+        printf("Aucune tache avec le statut %d n'a Ã©tÃ© trouvÃ©e.\n", search);
     }
 }
 
@@ -456,8 +456,8 @@ int main() {
         } else if (previousMenu == 2) {
           	printf("******************************************************************\n");
             printf("1 = Modifier la description d une tache.                         *\n");
-	        printf("2 = Modifier le statut d’une tache.                              *\n");
-	        printf("3 = Modifier le deadline d’une tache.                            *\n");
+	        printf("2 = Modifier le statut dÂ’une tache.                              *\n");
+	        printf("3 = Modifier le deadline dÂ’une tache.                            *\n");
 	        printf("4 = retour                                                       *\n");
 	        printf("Choisissez un nombre 1-4 :                                       *\n");
 	       	printf("******************************************************************\n");
@@ -504,7 +504,7 @@ int main() {
 				    searchTachebyTitre(searchtitre);
                     break;
                 case 3:
-                	printf("filter les tache par son statu ( a réalise :0  || en cours de réaliser :1 || finalisé : 2) : ");
+                	printf("filter les tache par son statu ( a rÃ©alise :0  || en cours de rÃ©aliser :1 || finalisÃ© : 2) : ");
 				    int searchStatu;
 				    scanf("%d",&searchStatu);
 				    searchTacheSpecifique(searchStatu);
@@ -519,8 +519,8 @@ int main() {
         }else if (previousMenu == 4) {
           	printf("******************************************************************\n");
             printf("1 = Afficher le nombre total des taches.                         *\n");
-	        printf("2 = Afficher le nombre de tâches completes et incompletes.       *\n");
-	        printf("3 = le nombre de jours restants jusqu'au délai de chaque tche.  *\n");
+	        printf("2 = Afficher le nombre de tÃ¢ches completes et incompletes.       *\n");
+	        printf("3 = le nombre de jours restants jusqu'au dÃ©lai de chaque tche.  *\n");
 	        printf("4 = retour                                                       *\n");
 	        printf("Choisissez un nombre 1-4 :                                       *\n");
 	       	printf("******************************************************************\n");
