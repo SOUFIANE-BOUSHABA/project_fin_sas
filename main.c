@@ -16,9 +16,9 @@ struct Tasks {
     int jours;    
     int statut; 
 };
-hhhhh
+
 struct Tasks taskList[100]; 
-int taskCound = 0;
+int taskCount = 0;
 void ajoutTask() {
    
     if (taskCount < 100) {
